@@ -10,13 +10,11 @@ const getC = document.getElementById('c')
 const getD = document.getElementById('d')
 
 startButton.addEventListener('click', startQuiz)
-nextButton.addEventListener('click', nextButton)
-choiceButton.addEventListener('click', chooseAnswer)
 
 //All quiz questions
 let quizQuestions = [
 	{
-		question: 'What is the correct JavaScript syntax to change the content of this HTML element: <p id="demo">This is a demonstration.</p>',
+		question: 'What is the correct JavaScript syntax to change the content of this HTML element: <p id="demo"> This is a demonstration.',
 		answers: {
 			a: 'document.getElementById("demo").innerHTML = "Hello World!',
 			b: '#demo.innerHTML = "Hello World!"',
@@ -102,29 +100,46 @@ function startQuiz(){
 	nextButton.classList.remove('hide')
 	rulesContainer.classList.remove('hide') //shows rules of quiz
 	nextButton.addEventListener('click',() => {
-		console.log('clicked next')
 		nextButton.classList.add('hide')
 		questionContainer.classList.remove('hide') 
 		rulesContainer.classList.add('hide')
+		populateQuestion();
 	})
 }
 
-function nextQuestion(){
+//choosing answer A, B, C, or D populates a new question/choices
+counter = 0;
+let choiceA = document.getElementById('a')
+let choiceB = document.getElementById('b')
+let choiceC = document.getElementById('c')
+let choiceD = document.getElementById('d')
+choiceA.addEventListener('click', chooseAnswer)
+choiceB.addEventListener('click', chooseAnswer)
+choiceC.addEventListener('click', chooseAnswer)
+choiceD.addEventListener('click', chooseAnswer)
+// choiceButton.addEventListener('click', chooseAnswer)
 
-	questionContainer.classList.remove('hide') //shows questions/choices when "start button is clicked
-
+function chooseAnswer() {
+	console.log('picked an answer!')
+	counter = (counter + 1) % quizQuestions.length
+	populateQuestion()
 }
 
 function populateQuestion() {
-	// quizQuestions.forEach((question, index) => {
-	// 	getQuestions.textContent = quizQuestions[0].question
-	// 	getA.textContent = 
-	// 	getB.textContent = ('another thing')
-	// 	getC.textContent = ('another thing')
-	// 	getD.textContent = ('another thing')
-	// });
+	// choiceButton.addEventListener('click', chooseAnswer)
+	let displayQuestion = quizQuestions[counter].question
+	getQuestions.replaceChildren(displayQuestion)
+	let displayAChoice = quizQuestions[counter].answers.a
+	getA.replaceChildren(displayAChoice)
+	let displayBChoice = quizQuestions[counter].answers.b
+	getB.replaceChildren(displayBChoice)
+	let displayCChoice = quizQuestions[counter].answers.c
+	getC.replaceChildren(displayCChoice)
+	let displayDChoice = quizQuestions[counter].answers.d
+	getD.replaceChildren(displayDChoice)
+
+	// choiceButton.addEventListener('click', chooseAnswer)
 };
 
-function chooseAnswer() {
-	console.log('choice made')
-}
+
+
