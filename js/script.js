@@ -100,9 +100,19 @@ let quizQuestions = [
 function startQuiz(){
 	startButton.classList.add('hide') //hides "start" button when clicked
 	nextButton.classList.remove('hide')
-	// questionContainer.classList.remove('hide') //shows questions/choices when "start button is clicked
 	rulesContainer.classList.remove('hide') //shows rules of quiz
-	populateQuestion()
+	nextButton.addEventListener('click',() => {
+		console.log('clicked next')
+		nextButton.classList.add('hide')
+		questionContainer.classList.remove('hide') 
+		rulesContainer.classList.add('hide')
+	})
+}
+
+function nextQuestion(){
+
+	questionContainer.classList.remove('hide') //shows questions/choices when "start button is clicked
+
 }
 
 function populateQuestion() {
