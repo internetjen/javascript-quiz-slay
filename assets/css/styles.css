@@ -1,6 +1,7 @@
-* {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+* {
+    font-family: 'Roboto Mono';
 }
 
 body {
@@ -13,13 +14,38 @@ body {
     width: auto;
 }
 
-#question {
+#question #rules-container{
     color: brown;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 2rem;
 }
 
+#rules-container {
+    padding: 1rem;
+    margin: 20px
+}
+
+h2 {
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin: 40px 0;
+}
+
+i {
+    font-size: 1.2rem;
+    padding: 10px;
+}
+
+ul {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+}
 .quiz-container {
     width: 600px;  
 
@@ -29,16 +55,18 @@ body {
     display: grid;
     grid-template-columns: auto;
     justify-content: center;
-    padding: 1em;
-    gap: 1em;
+    padding: 1rem;
+    gap: 1rem;
     margin: 20px 0;
 }
 
 .btn {
     padding: 1em;
+    font-size: 1.5rem;
     border-radius: 5px;
     color: white;
     background-color:rgb(54, 20, 85);
+    border: none;
 }
 
 .btn:hover {
@@ -46,7 +74,7 @@ body {
 }
 
 .start-btn, .next-btn {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -56,6 +84,6 @@ body {
     align-items: center;
 }
 
-/* .hide {
+.hide {
     display: none;
-} */
+}

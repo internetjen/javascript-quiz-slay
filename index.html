@@ -5,21 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/cd9af590b2.js" crossorigin="anonymous"></script>
     <title>Javascript Quiz</title>
 </head>
 <body>
     <div class="quiz-container">
+        <div id="rules-container" class="hide">
+            <h2>JavaScript Quiz</h2>
+            <ul><i class="fa-sharp fa-solid fa-book"></i>Answer the following question within the time limit.</ul>
+            <ul><i class="fa-sharp fa-solid fa-book"></i>You get one point for every correct answer.</ul>
+            <ul><i class="fa-sharp fa-solid fa-book"></i>Incorrect answers will penalize your time by 10 seconds.</ul>
+            <ul><i class="fa-sharp fa-solid fa-book"></i>At the end of the quiz, your score will be displayed.</ul>
+
+        </div>
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="choices-buttons" class="btn-grid">
-                <button class="btn">Choice 1</button>
-                <button class="btn">Choice 2</button>
-                <button class="btn">Choice 3</button>
-                <button class="btn">Choice 4</button>
+                <button class="btn" id="a">Choice A</button>
+                <button class="btn" id="b">Choice B</button>
+                <button class="btn" id="c">Choice C</button>
+                <button class="btn" id="d">Choice D</button>
             </div>
         </div>
         <div class="controls">
-            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="start-btn" class="start-btn btn">Start Quiz</button>
             <button id="next-btn" class="next-btn btn hide">Next</button>
         </div>
     </div>

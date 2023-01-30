@@ -1,4 +1,20 @@
-const quizQuestions = [
+const startButton = document.getElementById('start-btn')
+const nextButton = document.getElementById('next-btn')
+const rulesContainer = document.getElementById('rules-container')
+const questionContainer = document.getElementById('question-container')
+const choiceButton = document.getElementById('choices-buttons')
+const getQuestions = document.getElementById('question')
+const getA = document.getElementById('a')
+const getB = document.getElementById('b')
+const getC = document.getElementById('c')
+const getD = document.getElementById('d')
+
+startButton.addEventListener('click', startQuiz)
+nextButton.addEventListener('click', nextButton)
+choiceButton.addEventListener('click', chooseAnswer)
+
+//All quiz questions
+let quizQuestions = [
 	{
 		question: 'What is the correct JavaScript syntax to change the content of this HTML element: <p id="demo">This is a demonstration.</p>',
 		answers: {
@@ -80,3 +96,25 @@ const quizQuestions = [
 		correctAnswer: 'b'
 	}
 ];
+
+function startQuiz(){
+	startButton.classList.add('hide') //hides "start" button when clicked
+	nextButton.classList.remove('hide')
+	// questionContainer.classList.remove('hide') //shows questions/choices when "start button is clicked
+	rulesContainer.classList.remove('hide') //shows rules of quiz
+	populateQuestion()
+}
+
+function populateQuestion() {
+	// quizQuestions.forEach((question, index) => {
+	// 	getQuestions.textContent = quizQuestions[0].question
+	// 	getA.textContent = 
+	// 	getB.textContent = ('another thing')
+	// 	getC.textContent = ('another thing')
+	// 	getD.textContent = ('another thing')
+	// });
+};
+
+function chooseAnswer() {
+	console.log('choice made')
+}
