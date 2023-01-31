@@ -110,12 +110,34 @@ function startQuiz(){
 	})
 }
 
+
 //choosing answer A, B, C, or D populates a new question/choices
 counter = 0;
 choiceA.addEventListener('click', chooseAnswer)
 choiceB.addEventListener('click', chooseAnswer)
 choiceC.addEventListener('click', chooseAnswer)
 choiceD.addEventListener('click', chooseAnswer)
+
+//validating correct answers
+function checkAnswer(){
+	let buttons = document.getElementsByClassName("choice");
+	let buttonsCount = buttons.length;
+	for (let i = 0; i <= buttonsCount; i += 1) {
+	   buttons[i].onclick = function(e) {
+			console.log(this.id);
+			console.log(quizQuestions[i].correctAnswer)
+
+			if (this.id === quizQuestions[i].correctAnswer) {
+				console.log('correct!!!!')
+			} else {
+				console.log('nahhhhh')
+			}
+		};
+	}
+	} 
+
+let buttons = document.getElementsByClassName("choice")
+buttons.onclick = checkAnswer()
 
 function chooseAnswer() {
 	counter = (counter + 1) % quizQuestions.length
@@ -139,5 +161,4 @@ function populateQuestion() {
 	choiceD.replaceChildren(displayDChoice)
 };
 
-
-
+//keep score
