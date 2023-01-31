@@ -2,12 +2,14 @@ const startButton = document.getElementById('start-btn')
 const nextButton = document.getElementById('next-btn')
 const rulesContainer = document.getElementById('rules-container')
 const questionContainer = document.getElementById('question-container')
+const doneContainer = document.getElementById('done-container')
 const choiceButton = document.getElementById('choices-buttons')
 const getQuestions = document.getElementById('question')
-const getA = document.getElementById('a')
-const getB = document.getElementById('b')
-const getC = document.getElementById('c')
-const getD = document.getElementById('d')
+const getStarted = document.getElementById('welcome')
+const choiceA = document.getElementById('a')
+const choiceB = document.getElementById('b')
+const choiceC = document.getElementById('c')
+const choiceD = document.getElementById('d')
 
 startButton.addEventListener('click', startQuiz)
 
@@ -97,6 +99,7 @@ let quizQuestions = [
 
 function startQuiz(){
 	startButton.classList.add('hide') //hides "start" button when clicked
+	getStarted.classList.add('hide') //hides "welcome"
 	nextButton.classList.remove('hide')
 	rulesContainer.classList.remove('hide') //shows rules of quiz
 	nextButton.addEventListener('click',() => {
@@ -109,36 +112,31 @@ function startQuiz(){
 
 //choosing answer A, B, C, or D populates a new question/choices
 counter = 0;
-let choiceA = document.getElementById('a')
-let choiceB = document.getElementById('b')
-let choiceC = document.getElementById('c')
-let choiceD = document.getElementById('d')
 choiceA.addEventListener('click', chooseAnswer)
 choiceB.addEventListener('click', chooseAnswer)
 choiceC.addEventListener('click', chooseAnswer)
 choiceD.addEventListener('click', chooseAnswer)
-// choiceButton.addEventListener('click', chooseAnswer)
 
 function chooseAnswer() {
-	console.log('picked an answer!')
 	counter = (counter + 1) % quizQuestions.length
 	populateQuestion()
+	if (counter === 0) {
+		questionContainer.classList.add('hide')
+		doneContainer.classList.remove('hide')
+	}
 }
 
 function populateQuestion() {
-	// choiceButton.addEventListener('click', chooseAnswer)
 	let displayQuestion = quizQuestions[counter].question
 	getQuestions.replaceChildren(displayQuestion)
 	let displayAChoice = quizQuestions[counter].answers.a
-	getA.replaceChildren(displayAChoice)
+	choiceA.replaceChildren(displayAChoice)
 	let displayBChoice = quizQuestions[counter].answers.b
-	getB.replaceChildren(displayBChoice)
+	choiceB.replaceChildren(displayBChoice)
 	let displayCChoice = quizQuestions[counter].answers.c
-	getC.replaceChildren(displayCChoice)
+	choiceC.replaceChildren(displayCChoice)
 	let displayDChoice = quizQuestions[counter].answers.d
-	getD.replaceChildren(displayDChoice)
-
-	// choiceButton.addEventListener('click', chooseAnswer)
+	choiceD.replaceChildren(displayDChoice)
 };
 
 

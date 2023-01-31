@@ -14,24 +14,27 @@ body {
     width: auto;
 }
 
-#question #rules-container{
-    color: rgb(165, 42, 140);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1rem;
-}
-
 #question {
-    font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
 }
 
 #rules-container {
     padding: 1rem;
-    margin: 20px
+}
+
+#questions-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+#welcome {
+    text-align: center;
 }
 
 h2 {
@@ -44,17 +47,23 @@ h2 {
 }
 
 i {
-    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
     padding: 10px;
 }
 
 ul {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
+    text-align: center;
+    padding-inline-start: 0px;
 }
+
 .quiz-container {
-    width: 600px;  
+    width: 80%;  
 
 }
 
@@ -65,11 +74,12 @@ ul {
     padding: 1rem;
     gap: 1rem;
     margin: 20px 0;
+    flex-wrap: nowrap;
 }
 
 .btn {
-    padding: 1em;
-    font-size: 1rem;
+    padding: 1rem;
+    font-size: 0.9rem;
     border-radius: 5px;
     color: white;
     background-color:rgb(54, 20, 85);
