@@ -138,7 +138,6 @@ function showResults() {
 	let initials = prompt("Enter your initials: ");
 	localStorage.setItem("initials", initials);
 	localStorage.setItem("score", score);
-	// additional code to display the results on the page
 
 	let savedInitials = localStorage.getItem("initials");
 	let savedScore = localStorage.getItem("score");
