@@ -3,9 +3,11 @@ const nextButton = document.getElementById('next-btn')
 const rulesContainer = document.getElementById('rules-container')
 const questionContainer = document.getElementById('question-container')
 const doneContainer = document.getElementById('done-container')
+const timerContainer = document.getElementById('timer-container')
 const choiceButton = document.getElementById('choices-buttons')
 const getQuestions = document.getElementById('question')
 const getStarted = document.getElementById('welcome')
+const finalResults = document.getElementById('show-results')
 const choiceA = document.getElementById('a')
 const choiceB = document.getElementById('b')
 const choiceC = document.getElementById('c')
@@ -94,6 +96,16 @@ let quizQuestions = [
             d: 'Numbers'
 		},
 		correctAnswer: 'b'
+	},
+	{
+		question: 'Not a question',
+		answers: {
+			a: 'not an answer',
+			b: 'not an answer',
+			c: 'not an answer',
+            d: 'not an answer'
+		},
+		correctAnswer: 'none'
 	}
 ];
 
@@ -104,47 +116,58 @@ function startQuiz(){
 	rulesContainer.classList.remove('hide') //shows rules of quiz
 	nextButton.addEventListener('click',() => {
 		nextButton.classList.add('hide')
-		questionContainer.classList.remove('hide') 
+		questionContainer.classList.remove('hide')
 		rulesContainer.classList.add('hide')
+		timerContainer.classList.remove('hide')
 		populateQuestion();
 	})
 }
 
-
 //choosing answer A, B, C, or D populates a new question/choices
-counter = 0;
+let counter = 0;
+let score = 0;
 choiceA.addEventListener('click', chooseAnswer)
 choiceB.addEventListener('click', chooseAnswer)
 choiceC.addEventListener('click', chooseAnswer)
 choiceD.addEventListener('click', chooseAnswer)
 
-//validating correct answers
-function checkAnswer(){
-	let buttons = document.getElementsByClassName("choice");
-	let buttonsCount = buttons.length;
-	for (let i = 0; i <= buttonsCount; i += 1) {
-	   buttons[i].onclick = function(e) {
-			console.log(this.id);
-			console.log(quizQuestions[i].correctAnswer)
+function showResults() {
+	const showResults = document.getElementById('show-results')
+	showResults.innerHTML = 'Your score is: ' + score + ' / 8'
+	// code to retrieve the player's initials
+	let initials = prompt("Enter your initials: ");
+	localStorage.setItem("initials", initials);
+	localStorage.setItem("score", score);
+	// additional code to display the results on the page
 
-			if (this.id === quizQuestions[i].correctAnswer) {
-				console.log('correct!!!!')
-			} else {
-				console.log('nahhhhh')
-			}
-		};
-	}
-	} 
+	let savedInitials = localStorage.getItem("initials");
+	let savedScore = localStorage.getItem("score");
+	console.log("Your saved initials are " + savedInitials);
+	console.log("Your saved score is " + savedScore);
+	}  
 
-let buttons = document.getElementsByClassName("choice")
-buttons.onclick = checkAnswer()
+function chooseAnswer(event) {
+	counter = (counter + 1) % quizQuestions.length;
 
-function chooseAnswer() {
-	counter = (counter + 1) % quizQuestions.length
-	populateQuestion()
-	if (counter === 0) {
-		questionContainer.classList.add('hide')
-		doneContainer.classList.remove('hide')
+	if (counter === 8) {
+	  questionContainer.classList.add("hide");
+	  doneContainer.classList.remove("hide");
+	  showResults();
+	} else {
+	  populateQuestion();
+	  let selectedAnswer = event.target.id;
+	  let correctAnswer = quizQuestions[counter-1].correctAnswer;
+  
+	  if (selectedAnswer === correctAnswer) {
+		console.log("that is RIGHT!")
+		score++;
+	  } else {
+		timeLeft -= 10; // remove 10 seconds from the timer
+		if (timeLeft < 0) {
+		timeLeft = 0;
+		}
+		console.log("that is WRONG!");
+	  }
 	}
 }
 
@@ -161,4 +184,21 @@ function populateQuestion() {
 	choiceD.replaceChildren(displayDChoice)
 };
 
-//keep score
+
+//quiz timer
+let timeLeft = 100; // time in seconds
+const timerEl = document.getElementById('timer')
+
+const timer = setInterval(function() {
+  if (timeLeft <= 0) {
+    clearInterval(timer);
+	questionContainer.classList.add('hide')
+	doneContainer.classList.remove('hide')
+	showResults();
+  } else {
+    timerEl.innerHTML = 'time left:  ' + timeLeft;
+    timeLeft--;
+  }
+}, 1000); // 1000ms = 1 second
+
+

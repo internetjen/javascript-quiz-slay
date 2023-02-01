@@ -104,3 +104,23 @@ ul {
 .hide {
     display: none;
 }
+
+#timer-container {
+    font-size: 1rem;
+    color: red;
+    padding: 1rem;
+    margin-bottom: 3rem;
+}
+
+#timer {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+#show-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
